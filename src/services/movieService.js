@@ -1,7 +1,7 @@
 import {apiService} from "./apiService";
 
 const movieService={
-    getAll:()=>apiService.get(`/discover/movie?page=1` )
+    getAll:(page=1)=>apiService.get(`/discover/movie`,{params:{page}} )
 }
 
 export {movieService}

@@ -4,6 +4,8 @@ import {movieService} from "../../services/movieService";
 
 const initialState={
     movies:[],
+    prev:null,
+    next:null,
     movieForUpdate:null,
     errors:null,
     loading:null
@@ -11,9 +13,9 @@ const initialState={
 
 const getAll = createAsyncThunk(
     'movieSlice/getAll',
-    async (_,thunkAPI)=>{
+    async ({page},thunkAPI)=>{
         try {
-            const {data} = await movieService.getAll();
+            const {data} = await movieService.getAll(page);
             return data.results;
         }catch (e) {
             return thunkAPI.rejectWithValue(e.responce.data)
@@ -30,7 +32,10 @@ const movieSlice=createSlice({
     extraReducers:builder =>
         builder
             .addCase(getAll.fulfilled,(state,action)=>{
-                state.movies = action.payload
+                const {prev,next,items}=action.payload
+                state.movies = items
+                state.prev=prev
+                state.next=next
             })
 });
 
