@@ -4,6 +4,8 @@ import {MoviesListCard} from "./MoviesListCard";
 import {useState,useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {movieActions} from "../redux/slices/movieSlice";
+import {searchActions} from "../redux/slices/searchSlice";
+
 import {useSearchParams} from "react-router-dom";
 import {useForm} from "react-hook-form";
 
@@ -13,6 +15,8 @@ const MoviesList = () => {
    const {movies,page,total_pages} = useSelector(state => state.movies);
    const dispatch = useDispatch();
 
+   // const {searchMovies,page} =useSelector(state=>state.searchMovies)
+   // const dispatch = useDispatch();
  //  const {searchMovies} = useSelector(state => state.movies)
 
    // const {results}=searchMovies;
@@ -28,6 +32,7 @@ const MoviesList = () => {
     // const [movies,setMovies]= useState([])
 
     const search = (data, e) => console.log(data, e);
+
     // useEffect(()=>{
     //     movieService.getAll().then(({data})=>setMovies([...data.results]))
     //     },[]
@@ -54,6 +59,15 @@ const MoviesList = () => {
             {console.log(page)}
             {console.log(total_pages)}
             {movies.map(movie=><MoviesListCard key={movie.id} movie={movie}/>)}
+
+
+            <button
+                disabled={query.get('page')<=1}
+                onClick={()=>setQuery(query=>({page:+query.get('page')-1}))}> prev</button>
+            <button
+                disabled={query.get('page')>=500}
+                onClick={()=>setQuery(query=>({page:+query.get('page')+1}))}> next</button>
+
         </div>
 );
 };
