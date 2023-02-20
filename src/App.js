@@ -1,22 +1,23 @@
 
 import './App.css';
-import './components/userInfo'
-import {UserInfo} from "./components/userInfo";
-import {Header} from "./components/Header";
-import {MoviesList} from "./components/MoviesList";
-import {BrowserRouter} from "react-router-dom";
+
+import {Navigate, Route, Routes} from "react-router-dom";
+// import {MainLayout} from "./layouts/MainLayout";
+import {Movies} from "./pages";
+import {MainLayout} from "./layouts/MainLayout";
+
 
 function App() {
   return (
-      <BrowserRouter>
-    <div className="App">
-      {/*<header className="App-header">*/}
-      {/*</header>*/}
-        <Header/>
-        <UserInfo/>
-        <MoviesList/>
-    </div>
-      </BrowserRouter>
+      <Routes>
+          <Route path={'/'} element={<MainLayout/>}>
+                 <Route index element={<Navigate to={'movies'}/>}/>
+
+                  <Route path={'/movies'} element={<Movies/>}/>
+
+
+          </Route>
+      </Routes>
   );
 }
 
