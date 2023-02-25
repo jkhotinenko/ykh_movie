@@ -4,11 +4,14 @@ const movie ='/discover/movie';
 
 const search = '/search/keyword';
 
+const genres = '/genre/movie/list';
+
 const urls={
     movie:{
         movie,
         byPage:(page) =>`${movie}?page=${page}`,
-        search:(query) => `${search}?query=${query}`
+        search:(query) => `${search}?query=${query}`,
+        genres:()=>`${genres}`
     }
 }
 

@@ -4,7 +4,6 @@ import {MoviesListCard} from "./MoviesListCard";
 import {useState,useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {movieActions} from "../redux/slices/movieSlice";
-import {searchActions} from "../redux/slices/searchSlice";
 
 import {useSearchParams} from "react-router-dom";
 import {useForm} from "react-hook-form";

@@ -11,12 +11,14 @@ const initialState={
 };
 
 
-const search = createAsyncThunk(
+const searchf = createAsyncThunk(
     'searchSlice/search',
-    async ({query},thunkAPI)=>{
+    async ({query,page},thunkAPI)=>{
         try {
-            const {data} = await movieService.search(query);
-            // console.log(data.results);
+            console.log("query",query);
+            const {data} = await movieService.search(query,page);
+            console.log(data.page);
+             console.log("CAT results",data.results);
             return data;
 
         }catch (e) {
@@ -30,15 +32,18 @@ const searchSlice=createSlice({
     name:'searchSlice',
     initialState,
     reducers:{
-
     },
     extraReducers:builder => {
         builder
-            .addCase(search.fulfilled,(state,action)=>{
-                const {page,results}=action.payload;
+            .addCase(searchf.fulfilled,(state,action)=>{
+                const {page, results}=action.payload;
                 state.searchMovies=results;
+                state.m=results;
+                console.log("ss-res",results);
+                console.log("Movies",state.searchMovies);
                 state.page=page;
-                console.log(state);
+                console.log("ss-state",state);
+                console.log("m",state.m);
             });
     }
 });
@@ -47,7 +52,7 @@ const searchSlice=createSlice({
 const {reducer:searchReducer} = searchSlice;
 
 const searchActions={
-    search
+    searchf
 }
 
 

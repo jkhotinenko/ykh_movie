@@ -1,17 +1,17 @@
 import React from 'react';
+import {SearchList} from "../../components/SearchList";
 import {Header} from "../../components/Header";
 import {UserInfo} from "../../components/userInfo";
-import {MoviesList} from "../../components/MoviesList";
 
-const Movies = () => {
+const Search = () => {
     return (
         <div>
             <div className="App">
-                <UserInfo/>
-                <MoviesList/>
+            <UserInfo/>
+            <SearchList/>
             </div>
         </div>
     );
 };
 
-export {Movies};
+export {Search};

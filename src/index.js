@@ -7,18 +7,48 @@ import {App} from "./App";
 import {setupStore} from "./redux/store";
 import {BrowserRouter} from "react-router-dom";
 
+import { createTheme, NextUIProvider } from "@nextui-org/react"
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
+const lightTheme = createTheme({
+    type: 'light',
+    theme: {
+        // colors: {...}, // optional
+    }
+})
 
+const darkTheme = createTheme({
+    type: 'dark',
+    theme: {
+        // colors: {...}, // optional
+    }
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const store = setupStore();
 
+
+
+        // <App />
+
+
 root.render(
+    <Provider store={store}>
     <BrowserRouter>
-  <Provider store={store}>
+        <NextThemesProvider
+            defaultTheme="system"
+            attribute="class"
+            value={{
+                light: lightTheme.className,
+                dark: darkTheme.className
+            }}
+        >
+            <NextUIProvider>
     <App/>
-  </Provider>
+            </NextUIProvider>
+        </NextThemesProvider>
     </BrowserRouter>
+    </Provider>
 );
 

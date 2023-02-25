@@ -4,8 +4,6 @@ import {movieService} from "../../services/movieService";
 
 const initialState={
     movies:[],
-    // prev:null,
-    // next:null,
     page:null,
     total_pages:null,
     movieForUpdate:null,
@@ -27,19 +25,6 @@ const getAll = createAsyncThunk(
     }
 );
 
-const search = createAsyncThunk(
-    'movieSlice/search',
-    async ({query},thunkAPI)=>{
-        try {
-            const {data} = await movieService.search(query);
-            // console.log(data.results);
-            return data;
-
-        }catch (e) {
-            return thunkAPI.rejectWithValue(e.response.data)
-        }
-    }
-);
 
 
 const movieSlice=createSlice({
@@ -58,22 +43,15 @@ const movieSlice=createSlice({
                 state.total_pages=total_pages
                 // state.next = next
                 console.log(state);
-            })
-            .addCase(search.fulfilled,(state,action)=>{
-                const {page,results}=action.payload;
-                state.movies=results;
-                state.page=page;
-                console.log(state);
             });
     }
 });
 
 const {reducer:movieReducer} = movieSlice;
-const {reducer:searchReducer} = movieSlice;
+
 
 const movieActions={
-    getAll,
-    search
+    getAll
 }
 
 
