@@ -4,6 +4,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {genresActions} from "../redux/slices/genresSlice";
 import {GenresListCard} from "./GenresListCard";
 
+import {MoviesListCard} from "./MoviesListCard";
+
+import {gmActions} from "../redux/slices/gmSlice";
+
+import {useSearchParams} from "react-router-dom";
+
+import { Grid, Card, Text } from "@nextui-org/react";
+
+import css from './genres.css'
+
 const GenresList = () => {
 
     const {genres} = useSelector(state => state.genres);
@@ -23,13 +33,30 @@ const GenresList = () => {
     },[dispatch])
 
   //  console.log(genres)
+    const {gmovies,page,total_pages} = useSelector(state => state.gmovies);
+    const dispatchm = useDispatch();
+
+
+    const [query,setQuery]=useSearchParams({page:'1',with_genres:'10749'});
+
+    useEffect(()=>{
+        console.log("qwg",query.get('with_genres'));
+        dispatchm(gmActions.getAllgenres({page:query.get('page'),with_genres:query.get('with_genres')}))
+    },[dispatchm,query])
 
     return (
         <div>
-           Test
+            <div className="gleft">
+                {genres.map(genre=><GenresListCard key={genre.id} genre={genre} wg={genre.id} setQ={setQuery}/>)}
+            </div>
 
-            {/*{movies.map(movie=><MoviesListCard key={movie.id} movie={movie}/>)}*/}
-            {genres.map(genre=><GenresListCard key={genre.id} genre={genre}/>)}
+            <div className="gright">
+                {query.get('with_genres')}
+                {gmovies &&
+                    <>
+                       {gmovies.map(movie=><MoviesListCard key={movie.id} movie={movie}/>)}
+                    </>}
+            </div>
         </div>
     );
 };

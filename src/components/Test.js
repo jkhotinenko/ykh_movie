@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Poster = () => {
+const Test = ({movie}) => {
     return (
         <div>
-            Poster
+            Test
         </div>
     );
 };
 
-export {Poster};
+export {Test};

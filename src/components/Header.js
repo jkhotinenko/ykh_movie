@@ -22,7 +22,7 @@ const Header = () => {
                         <Link to={'/search'}><Button color="primary" auto ghost>Search</Button></Link>
                     </Grid>
                     <Grid>
-                        <Link to={'/genres'}><Button color="primary" auto ghost>>Genres</Button></Link>
+                        <Link to={'/genres'}><Button color="primary" auto ghost>Genres</Button></Link>
                     </Grid>
                 <Grid>
                     <Avatar  text="JK" size="md" />

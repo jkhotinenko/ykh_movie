@@ -14,25 +14,14 @@ const initialState={
     loading:null
 };
 
-const getAll = createAsyncThunk(
-    'movieSlice/getAll',
-    async ({page},thunkAPI)=>{
-        try {
-            const {data} = await movieService.getAll(page);
-            // console.log(data.results);
-            return data;
 
-        }catch (e) {
-            return thunkAPI.rejectWithValue(e.response.data)
-        }
-    }
-);
 const getAllgenres = createAsyncThunk(
-    'movieSlice/getAll',
+    'gmSlice/getAllgenres',
     async ({page,with_genres},thunkAPI)=>{
         try {
+            console.log("wg",with_genres);
             const {data} = await movieService.getAllgenres(page,with_genres);
-            // console.log(data.results);
+             console.log("CAT gag",data.results);
             return data;
 
         }catch (e) {
@@ -42,35 +31,34 @@ const getAllgenres = createAsyncThunk(
 );
 
 
-const movieSlice=createSlice({
-    name:'movieSlice',
+const gmSlice=createSlice({
+    name:'gmSlice',
     initialState,
     reducers:{
 
     },
     extraReducers:builder => {
         builder
-            .addCase(getAll.fulfilled, (state, action) => {
+            .addCase(getAllgenres.fulfilled, (state, action) => {
                 const {page, results,total_pages} = action.payload
                 // const {items} =action.payload;
-                state.movies = results;
+                state.gmovies = results;
                 state.page = page
                 state.total_pages=total_pages
                 // state.next = next
-                console.log(state);
+                 console.log("state",state);
             })
-
     }
 });
 
 
 
-const {reducer:movieReducer} = movieSlice;
+const {reducer:gmReducer} = gmSlice;
 
 
-const movieActions={
-    getAll,getAllgenres
+const gmActions={
+    getAllgenres
 }
 
 
-export {movieReducer,movieActions}
+export {gmReducer,gmActions}

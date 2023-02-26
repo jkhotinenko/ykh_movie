@@ -59,9 +59,20 @@ const SearchList = () => {
                 disabled={query.get('page')>=500}
                 onClick={()=>setQuery(query=>({query:query.get('query'),page:+query.get('page')+1}))}> next</button>
             <div>
+
+                {/*{query && <h2>Введите текст для поиска</h2>}*/}
+
+                <div></div>
                 {searchMovies && searchMovies.map(movie=><MoviesListCard key={movie.id} movie={movie}/>)}
             </div>
 
+
+            <button
+                disabled={query.get('page')<=1}
+                onClick={()=>setQuery(query=>({query:query.get('query'),page:+query.get('page')-1}))}> prev</button>
+            <button
+                disabled={query.get('page')>=500}
+                onClick={()=>setQuery(query=>({query:query.get('query'),page:+query.get('page')+1}))}> next</button>
         </div>
     );
 };

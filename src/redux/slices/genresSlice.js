@@ -15,7 +15,7 @@ const genresf = createAsyncThunk(
     'genresSlice/genres',
     async (thunkAPI)=>{
         try {
-            // console.log("query",query);
+             // console.log("query",query);
             const {data} = await movieService.genres();
             // console.log(data.page);
              console.log("CAT data",data);
