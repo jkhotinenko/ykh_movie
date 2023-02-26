@@ -2,7 +2,6 @@ import React from 'react';
 import css from "./Movie.module.css"
 import {Link} from "react-router-dom";
 import {baseURL} from "../config/urls";
-import {Test} from "../components/Test"
 
 
 const MoviesListCard = ({movie}) => {

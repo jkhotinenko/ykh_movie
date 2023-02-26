@@ -51,9 +51,16 @@ const GenresList = () => {
             </div>
 
             <div className="gright">
-                {query.get('with_genres')}
+                {/*{query.get('with_genres')}*/}
                 {gmovies &&
                     <>
+                        <button
+                            disabled={query.get('page')<=1}
+                            onClick={()=>setQuery(query=>({with_genres:query.get('with_genres'),page:+query.get('page')-1}))}> prev</button>
+                        <button
+                            disabled={query.get('page')>=500}
+                            onClick={()=>setQuery(query=>({with_genres:query.get('with_genres'),page:+query.get('page')+1}))}> next</button>
+
                        {gmovies.map(movie=><MoviesListCard key={movie.id} movie={movie}/>)}
                     </>}
             </div>
