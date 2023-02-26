@@ -2,7 +2,6 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {movieService} from "../../services/movieService";
 
-//with_genres
 
 
 const initialState={
@@ -19,7 +18,6 @@ const getAll = createAsyncThunk(
     async ({page},thunkAPI)=>{
         try {
             const {data} = await movieService.getAll(page);
-            // console.log(data.results);
             return data;
 
         }catch (e) {
@@ -32,7 +30,6 @@ const getAllgenres = createAsyncThunk(
     async ({page,with_genres},thunkAPI)=>{
         try {
             const {data} = await movieService.getAllgenres(page,with_genres);
-            // console.log(data.results);
             return data;
 
         }catch (e) {
@@ -52,12 +49,10 @@ const movieSlice=createSlice({
         builder
             .addCase(getAll.fulfilled, (state, action) => {
                 const {page, results,total_pages} = action.payload
-                // const {items} =action.payload;
                 state.movies = results;
                 state.page = page
                 state.total_pages=total_pages
-                // state.next = next
-                console.log(state);
+
             })
 
     }

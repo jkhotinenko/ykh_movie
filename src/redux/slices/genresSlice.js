@@ -15,10 +15,7 @@ const genresf = createAsyncThunk(
     'genresSlice/genres',
     async (thunkAPI)=>{
         try {
-             // console.log("query",query);
             const {data} = await movieService.genres();
-            // console.log(data.page);
-             console.log("CAT data",data);
             return data;
 
         }catch (e) {
@@ -38,12 +35,6 @@ const genresSlice=createSlice({
             .addCase(genresf.fulfilled,(state,action)=>{
                 const {genres}=action.payload;
                 state.genres=genres;
-                // state.m=results;
-                // console.log("ss-res",results);
-                console.log("genres",state.genres);
-                // state.page=page;
-                // console.log("ss-state",state);
-                // console.log("m",state.m);
             });
     }
 });

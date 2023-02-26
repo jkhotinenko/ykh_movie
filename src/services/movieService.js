@@ -6,7 +6,6 @@ const movieService={
     search:(query,page=1)=>apiService.get('/search/movie',{params:{query,page}}),
     genres:()=>apiService.get('/genre/movie/list'),
     getPoster:(id)=>apiService.get(`/movie/${id}`)
-//    =505642
 }
 
 export {movieService}

@@ -33,8 +33,6 @@ const Header = () => {
                         checked={isDark}
                         onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}/>
                     </Grid>
-
-
                 </Grid.Container>
             </div>
         </div>

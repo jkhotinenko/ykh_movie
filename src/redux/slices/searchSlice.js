@@ -15,10 +15,7 @@ const searchf = createAsyncThunk(
     'searchSlice/search',
     async ({query,page},thunkAPI)=>{
         try {
-            console.log("query",query);
             const {data} = await movieService.search(query,page);
-            console.log(data.page);
-             console.log("CAT results",data.results);
             return data;
 
         }catch (e) {
@@ -39,11 +36,7 @@ const searchSlice=createSlice({
                 const {page, results}=action.payload;
                 state.searchMovies=results;
                 state.m=results;
-                console.log("ss-res",results);
-                console.log("Movies",state.searchMovies);
                 state.page=page;
-                console.log("ss-state",state);
-                console.log("m",state.m);
             });
     }
 });

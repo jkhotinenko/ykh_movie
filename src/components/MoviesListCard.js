@@ -7,19 +7,14 @@ import {baseURL} from "../config/urls";
 const MoviesListCard = ({movie}) => {
     const {id,poster_path,title,release_date}=movie;
       let imgUrl = `https://image.tmdb.org/t/p/w440_and_h660_face${poster_path}`;
-    console.log(imgUrl);
+
     return (
         <div>
-            {/*MoviesListCard*/}
-            {/*{id}*/}
-            {/*{poster_path}*/}
-            {/*{imgUrl}*/}
             <h3>
             <div className="lmt">{title}</div>
             </h3>
             <h4>Release: {release_date}</h4>
             <Link to={`/movie/${id}`}><img src={imgUrl} alt=""/></Link>
-
         </div>
     );
 };

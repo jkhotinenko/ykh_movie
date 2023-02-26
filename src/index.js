@@ -13,24 +13,20 @@ import { ThemeProvider as NextThemesProvider } from 'next-themes';
 const lightTheme = createTheme({
     type: 'light',
     theme: {
-        // colors: {...}, // optional
+
     }
 })
 
 const darkTheme = createTheme({
     type: 'dark',
     theme: {
-        // colors: {...}, // optional
+
     }
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const store = setupStore();
-
-
-
-        // <App />
 
 
 root.render(
@@ -45,7 +41,7 @@ root.render(
             }}
         >
             <NextUIProvider>
-    <App/>
+                <App/>
             </NextUIProvider>
         </NextThemesProvider>
     </BrowserRouter>

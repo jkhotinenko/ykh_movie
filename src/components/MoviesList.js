@@ -24,14 +24,7 @@ const MoviesList = () => {
     return (
         <div>
             <div>
-                {/*<form onSubmit={handleSubmit(search)}>*/}
-                {/*    <input placeholder={"Search"} {...register('search')}/>*/}
-                {/*    <button>Search</button>*/}
-                {/*</form>*/}
-
-
-
-
+               <h1>Movies</h1>
                 <button
                       disabled={query.get('page')<=1}
                         onClick={()=>setQuery(query=>({page:+query.get('page')-1}))}> prev</button>
@@ -43,14 +36,14 @@ const MoviesList = () => {
 
             {movies.map(movie=><MoviesListCard key={movie.id} movie={movie}/>)}
 
-
+            <div>
             <button
                 disabled={query.get('page')<=1}
                 onClick={()=>setQuery(query=>({page:+query.get('page')-1}))}> prev</button>
             <button
                 disabled={query.get('page')>=500}
                 onClick={()=>setQuery(query=>({page:+query.get('page')+1}))}> next</button>
-
+            </div>
         </div>
 );
 };
